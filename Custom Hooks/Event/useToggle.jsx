@@ -1,4 +1,4 @@
-import { useState, useCallback } from 'react';
+import { useState, useCallback } from "react";
 
 function useToggle(on) {
   const [isToggled, setIsToggled] = useState(on);
@@ -11,7 +11,6 @@ function useToggle(on) {
 }
 
 /* Usage example */
-
 export default function App() {
   const [isToggled, toggle] = useToggle(false);
 

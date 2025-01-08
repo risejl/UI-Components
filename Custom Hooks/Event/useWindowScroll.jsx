@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 
 function useWindowScroll() {
   const [scrollPosition, setScrollPosition] = useState({
@@ -6,14 +6,14 @@ function useWindowScroll() {
     scrollY: window.scrollY,
   });
 
-  useEffect(() => {
-    const handleScroll = () => {
-      setScrollPosition({
-        scrollX: window.scrollX,
-        scrollY: window.scrollY,
-      });
-    };
+  const handleScroll = useCallback(() => {
+    setScrollPosition({
+      scrollX: window.scrollX,
+      scrollY: window.scrollY,
+    });
+  }, []);
 
+  useEffect(() => {
     window.addEventListener("scroll", handleScroll, { passive: true });
 
     return () => {
@@ -23,8 +23,6 @@ function useWindowScroll() {
 
   return scrollPosition;
 }
-
-// Usage example
 
 function App() {
   const { scrollX, scrollY } = useWindowScroll();

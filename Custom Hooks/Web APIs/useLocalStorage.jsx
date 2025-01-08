@@ -15,7 +15,7 @@ function useLocalStorage(key, initialValue) {
     try {
       window.localStorage.setItem(key, JSON.stringify(storedValue));
     } catch (err) {
-      console.error(`Error writing localStorage key “${key}”:`, error);
+      console.error(`Error writing localStorage key “${key}”:`, err);
     }
   }, [key, storedValue]);
 
@@ -25,7 +25,7 @@ function useLocalStorage(key, initialValue) {
         value instanceof Function ? value(storedValue) : value;
       setStoredValue(valueToStore);
     } catch (err) {
-      console.error(`Error setting localStorage key “${key}”:`, error);
+      console.error(`Error setting localStorage key “${key}”:`, err);
     }
   };
 
